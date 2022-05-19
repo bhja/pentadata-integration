@@ -1,0 +1,32 @@
+version: '3.3'
+services:
+  mysql_db:
+    image:  mysql:5.7
+    restart: always
+    environment:
+      - MYSQL_ROOT_PASSWORD=password
+      - MYSQL_DATABASE=apmq
+      - MYSQL_PASSWORD=password
+      - MYSQL_HOST=localhost
+    ports:
+      - "3306:3306"
+    networks:
+      web:
+
+  pentadata:
+     image: 931716422419.dkr.ecr.us-east-1.amazonaws.com/pentadata
+     ports:
+       - "8080:8080"
+     environment:
+      - database.url=jdbc:mysql://mysql_db:3306/apmq?useSSL=false&allowPublicKeyRetrieval=true
+     depends_on:
+       - mysql_db
+     networks:
+       web:
+     restart: always
+
+networks:
+  web:
+    driver: bridge
+
+

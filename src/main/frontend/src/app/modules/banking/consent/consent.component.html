@@ -1,0 +1,12 @@
+<div mat-dialog-content>
+  <div mat-dialog-title>Provide Consent </div>
+  By linking accounts you will authorize access to your data
+  <ul>
+    <li>Profile Data  </li>
+    <li>Statement Data </li>
+  </ul>
+  <mat-checkbox color="primary" (change)="sendUserConsent($event)"> By clicking "Share my data", I allow this third party to access and retrieve my information.</mat-checkbox>
+<div align="right">
+  <button mat-button color="primary" (click)="launch()" [disabled]="!checked" >Share my data</button>
+</div>
+</div>

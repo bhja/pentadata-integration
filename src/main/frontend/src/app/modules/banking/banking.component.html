@@ -1,0 +1,12 @@
+<mat-card>
+ <div mat-card-title="Banking"></div>
+ <div mat-card-content align="center" *ngIf="link">
+   <button mat-button color="primary" (click)="create()">Link with Pentadata</button>
+ </div>
+ <div *ngIf="add" >
+   <app-add-bank></app-add-bank>
+ </div>
+ <div *ngIf="account">
+   <app-account></app-account>
+ </div>
+</mat-card>

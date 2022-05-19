@@ -1,0 +1,36 @@
+<mat-card>
+ <div align="right"><button mat-button color="primary" (click)="addAccount()">Add financial institution</button></div>
+  <div *ngIf="accounts.length==0" align="center">Link accounts by adding financial institutions</div>
+  <div *ngIf="accounts.length>0" mat-card-title color="primary" align="center">Account Details
+<table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+  <ng-container matColumnDef="bank">
+    <th mat-header-cell *matHeaderCellDef>Bank</th>
+    <td mat-cell *matCellDef="let account">{{account.bank}}</td>
+  </ng-container>
+  <ng-container matColumnDef="account_type">
+    <th mat-header-cell *matHeaderCellDef>Account Type</th>
+    <td mat-cell *matCellDef="let account">{{account.account_type}}</td>
+  </ng-container>
+  <ng-container matColumnDef="account_name">
+    <th mat-header-cell *matHeaderCellDef>Account Name</th>
+    <td mat-cell *matCellDef="let account" (dblclick)="showTransactions(account)">{{account.account_name}}</td>
+  </ng-container>
+  <ng-container matColumnDef="delete">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header>Actions</th>
+    <td mat-cell *matCellDef="let i = index">
+     <!-- <button mat-icon-button (click)="delete(i)" >
+        <mat-icon>close</mat-icon>
+      </button>-->
+      <button mat-icon-button (click)="showTransactions(accounts[i])" >
+        <mat-icon>list</mat-icon>
+      </button>
+    </td>
+  </ng-container>
+  <tr mat-header-row *matHeaderRowDef="columns"></tr>
+  <tr mat-row *matRowDef="let account; columns: columns;"
+           [ngClass]="{'highlight': selectedRowIndex == accounts.indexOf(account)}"
+           ></tr>
+</table>
+</div>
+
+</mat-card>
